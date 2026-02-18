@@ -27,6 +27,14 @@ git clone https://github.com/panpanc/craft-learn.git
 cd craft-learn
 ```
 
+Then open the project in your preferred AI coding tool:
+
+| Tool | Command |
+|------|---------|
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | `claude` |
+| [Codex](https://github.com/openai/codex) | `codex` |
+| Cursor / Windsurf / OpenCode | Open the folder in the editor |
+
 ### Claude Code
 
 Skills in `.claude/skills/` are auto-discovered as slash commands.
