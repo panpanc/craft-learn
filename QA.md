@@ -34,6 +34,21 @@ One-liner heuristics:
 | A progression from naive to production code | `notebook-deep-py` |
 | Comprehensive multi-topic coverage | `course-markdown` or `course-notebook-py` |
 | Interview prep | `leetcode-notebook-py` or `leetcode-notebook-ts` |
+| Content tailored to a specific audience | Add "for \<audience\>" to any command |
+
+---
+
+## Can I specify who the content is for?
+
+Yes. Append your audience or level to any command:
+
+| Example | What it does |
+|---|---|
+| `/learn SQL joins for backend engineers` | Assumes DB and coding experience, focuses on performance |
+| `/explain gradient descent for non-technical managers` | Avoids math, uses business analogies |
+| `/course-markdown quantum mechanics for people with undergraduates with rusty calculus and linear algebra` | Refreshes prerequisites as needed |
+
+The skill adapts vocabulary, depth, prerequisites, and examples to match. If you don't specify, the default is a technically literate reader who knows programming but not the specific topic.
 
 ---
 
@@ -113,6 +128,8 @@ When multiple skills could fit and you haven't specified a format, the router as
 | `improve sql_joins.ipynb more depth` | `explore` (deep-dive) | Follow-up signal with file |
 | `machine learning course` | Asks: markdown or notebook? | "course" trigger, no format |
 | `compiler design markdown` | `course-markdown` | "markdown" format signal |
+| `gradient descent for biologists` | `explain` | Audience signal doesn't change routing — just adapts content |
+| `quantum mechanics course for engineers` | Asks: markdown or notebook? | Audience passes through to the chosen skill |
 
 ---
 

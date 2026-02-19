@@ -108,6 +108,7 @@ If no structural signal matched, match the user's topic against the skill descri
    - **Format**: "Read as prose, or interact with runnable code?"
    - **Depth** (only if code): "Quick overview or deep dive from first principles?"
    - **Scope**: "Single explanation or a multi-chapter course?"
+   - **Audience** (if specified): Preserve the audience/level phrase (e.g., "for engineers", "for beginners") and pass it through to the target skill as part of the arguments. Do NOT strip audience phrases — they are content instructions, not routing signals.
 
    Ask at most 2 questions. Map the answers to the right command:
    - Prose → `explain`
@@ -139,3 +140,5 @@ Once you've identified the target skill:
 | `compiler design markdown` | `course-markdown` | "markdown" format signal |
 | `deep learning course as separate notebooks` | `course-notebook-py` | "course" + "separate notebooks" signal |
 | `build a database notebook` | `notebook-deep-py` | Single-notebook progressive format |
+| `gradient descent for biologists` | Ask: prose or code? | Audience modifier preserved, no format specified |
+| `compiler design course for CS undergrads` | Ask: markdown or notebook? | "course" routes, audience passes through |

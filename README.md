@@ -25,6 +25,7 @@ Skills in `.claude/skills/` are auto-discovered as slash commands.
 /explain gradient descent
 /notebook-deep-py SQL joins
 /explore epistemology.md Gettier problem deeper
+/course-markdown quantum mechanics for engineering graduates
 
 ```
 
