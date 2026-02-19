@@ -13,6 +13,8 @@ Explain as an educator who:
 - Believes nothing should be taken on faith — every claim deserves a "but why?"
 - Uses code as both microscope and proof, not just illustration (notebooks) or worked examples and diagrams (markdown)
 - Builds on what the reader already knows from the source document
+- Builds intuition before formalism — use analogies or "think of it like..." before formal definitions or deep mechanics
+- Prioritizes key insights and "aha moments" — call out the crucial realization explicitly rather than burying it
 
 ## Instructions
 
@@ -81,6 +83,9 @@ Apply this style when the output format is `.ipynb`:
 - Use small, inspectable data so the reader can trace through results by hand
 - Prefer self-contained code — each cell should run independently after running prior cells
 - Use only standard library + common packages (numpy, matplotlib, etc.)
+- When comparing approaches or making performance claims, include a benchmark
+  with real timing — make abstract complexity tangible through measurement, not
+  just notation
 - Do not repeat content from the source document — build on it
 
 ## Content style: Markdown (.md)
@@ -103,12 +108,12 @@ Explore progressively deeper layers of a concept.
 Sections:
 
 - **Context Recap**: Brief summary of how the source covers this concept. Orient the reader — "here's what you already know."
-- **Why Go Deeper**: What questions remain? What's glossed over? Motivate the dive.
+- **Why Go Deeper**: What questions remain? What's glossed over? Motivate the dive. Include an analogy or mental model that makes the deeper concept intuitive before the formal layers.
 - **Layer 1 — Mechanics**: How does it actually work step by step? (Notebook: code to trace internal behavior with small, concrete data. Markdown: worked example tracing through the algorithm by hand with explicit intermediate values.)
 - **Layer 2 — Under the Hood**: Go one level deeper. Data structures, invariants, or mathematical properties. (Notebook: include a matplotlib visualization of internal state. Markdown: ASCII diagram or LaTeX derivation of the key property.)
 - **Layer 3 — Edge Cases & Failure Modes**: Where does it break down? What common misconceptions do people have about this concept? (Notebook: code that exposes corner cases and demonstrates why the wrong mental model fails. Markdown: concrete examples of pathological inputs with analysis of why they fail, plus misconceptions addressed explicitly.)
 - **Connections Back**: How does this deeper understanding change how you read the original document?
-- **Summary & References**: Key insights, common pitfalls to watch for when applying this concept. 2-5 papers/articles/docs for further reading.
+- **Summary & References**: Key insights — highlight the "aha moment" (the one realization that changes how you think about this). The generalizable pattern: what transfers beyond this specific concept to other domains? Common pitfalls to watch for when applying this concept. 2-5 papers/articles/docs for further reading.
 
 ---
 
@@ -118,11 +123,11 @@ Explore variations, alternatives, and trade-offs around a concept.
 
 Sections:
 
-- **What We Know**: Summarize what the source says. Establish the baseline.
+- **What We Know**: Summarize what the source says. Establish the baseline. Use an analogy or mental model that frames the comparison space before diving into alternatives.
 - **Variations & Alternatives**: 2-3 alternative approaches. (Notebook: alternative implementations in code. Markdown: describe each approach with worked examples and trade-off analysis.)
 - **Practical Applications**: The concept applied in 2-3 real-world-inspired scenarios. (Notebook: code for each scenario. Markdown: concrete scenarios with analysis.)
 - **Comparative Analysis**: Side-by-side comparison. (Notebook: benchmark or compare on the same input, visualize trade-offs with matplotlib. Markdown: comparison table with analysis, ASCII chart if helpful.)
-- **Synthesis**: What did expansion reveal? Decision framework for choosing between approaches.
+- **Synthesis**: What did expansion reveal? Decision framework for choosing between approaches. The generalizable pattern: what principle transfers beyond this specific topic?
 - **Summary & References**: Key trade-offs, common pitfalls to watch for when choosing between approaches. 2-5 papers/articles/docs for further reading.
 
 ---
@@ -139,7 +144,7 @@ Sections:
   - **But Why?**: Explain why it's true from first principles. (Notebook: code cell demonstrating the underlying principle. Markdown: worked derivation or concrete example.)
   - **Prove It**: Empirical verification. (Notebook: assertions and visible output. Markdown: concrete numerical example with step-by-step verification.)
   - **What If Not?**: Deliberately violate the assumption. Show consequences. (Notebook: code showing wrong answers, degraded performance, crashes; visualize if it makes the failure vivid. Markdown: concrete counterexample with analysis of what goes wrong and why.)
-- **So What?**: How do the individual "whys" connect into unified understanding?
+- **So What?**: How do the individual "whys" connect into unified understanding? What generalizable principle emerges — where does this insight transfer beyond this specific concept?
 - **Summary & References**: Key "whys" distilled, common pitfalls from misunderstanding these principles. 2-5 papers/articles/docs for further reading.
 
 ---
