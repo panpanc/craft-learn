@@ -228,6 +228,34 @@ For comprehensive coverage of a broad topic.
                                               # → dropout_vs_weight_decay_expanded.ipynb
 ```
 
+### Explore from clipboard
+
+Copy a passage from any source (blog post, textbook, docs), then explore it in the context of a file you've already generated.
+
+```
+# 1. Generate a document
+/learn hash tables as a notebook
+                                              # → notebook-py → hash_tables.ipynb
+
+# 2. Copy a passage to your clipboard (e.g., from a blog post about Robin Hood hashing)
+
+# 3. Explore it in context of your file
+/explore hash_tables.ipynb --from-clipboard deeper
+                                              # → robin_hood_hashing_deep_dive.ipynb
+
+# 4. Or use natural language through the router
+/learn explore what I copied
+                                              # auto-finds most recent .md/.ipynb, reads clipboard
+                                              # → explore (deep-dive by default)
+```
+
+The clipboard text is matched against the source file to find surrounding context. You can combine `--from-clipboard` with any mode:
+
+```
+/explore hash_tables.ipynb --from-clipboard expand
+/explore hash_tables.ipynb --from-clipboard why
+```
+
 ### LeetCode practice
 
 ```

@@ -1,1 +1,13 @@
 *.html
+*.pdf
+.DS_Store
+node_modules/
+dist/
+build/
+coverage/
+.env
+*.log
+*.tmp
+.idea/
+.vscode/
+*.bak
