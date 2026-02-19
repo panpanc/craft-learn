@@ -21,31 +21,38 @@ Explain as a problem-solver and educator who:
 
    - **Problem** (markdown): Restate the problem clearly. Include input/output format, constraints, and 2-3 example cases.
 
-   - **Intuition** (markdown + code): Why does this approach work? Build understanding with analogies, mental models, or diagrams. Explain the "aha moment" — what insight unlocks the solution? Name the most common wrong intuition about this problem and explain why it fails. Include a code cell with a visualization (matplotlib or ASCII) to make the insight visual (e.g., visualizing array state, tree structure, or algorithm progression).
+   - **Intuition** (markdown + code): Why does this approach work? Build understanding with analogies, mental models, or diagrams. Explain the "aha moment" — what insight unlocks the solution? Name 2-3 common wrong approaches — for each, explain what it tries, why it seems reasonable, and exactly why it fails (wrong answer, TLE, or missing edge case). Include a code cell with a visualization (matplotlib or ASCII) that shows the problem structure — the "aha" diagram that makes the insight visual (e.g., visualizing array state, tree structure, or algorithm progression).
 
    - **Approach** (markdown): Step-by-step strategy before diving into code. Explain the algorithm in plain English. Mention any data structures used and *why* they're the right choice.
 
-   - **Solution** (code): Working Python solution using LeetCode conventions (`class Solution`, type hints with `List[int]`, `Optional[TreeNode]`, etc.). Include a test cases section in the same or following cell that prints results and uses assertions. When showing brute force → optimized, include a cell that demonstrates *why* the brute force fails (e.g., timeout on larger input, wrong answer on a tricky case).
+   - **Solution** (code): Working Python solution using LeetCode conventions (`class Solution`, type hints with `List[int]`, `Optional[TreeNode]`, etc.). Include a test cases section in the same or following cell that prints results and uses assertions. When multiple approaches exist, show the full progression as separate Solution cells (e.g., O(n²) → O(n log n) → O(n)). For each step: implement it, demo it working on examples, then demo the limitation that motivates the next step (e.g., timeout on larger input, wrong answer on a tricky case). Include a visualization in a code cell that traces the algorithm state on an example (e.g., pointer positions, window boundaries, hash map contents at each iteration).
+
+   - **Walkthrough** (code, after each Solution cell): Trace through one example input step by step, printing variable state at each iteration (loop counter, pointer positions, data structure contents, decisions made). This is how interviewers expect candidates to verify — "walk me through this."
+
+   - **Benchmark** (code): Run both brute force and optimal solutions on increasing input sizes (e.g., n = 100, 1000, 5000, 10000), print a timing table, and plot the performance curves using matplotlib. Makes Big-O tangible — the reader sees O(n²) vs O(n) as real seconds, not just notation.
 
    - **Complexity Analysis** (markdown): Time and space complexity with clear explanations of *why* (not just the Big-O notation).
 
    - **Edge Cases & Follow-ups** (markdown + code): What edge cases to watch for? Common mistakes? Include a code cell with edge case test assertions. How would the solution change if constraints were different?
 
-   - **Pattern & Generalization** (markdown): What abstract pattern does this problem belong to? (e.g., sliding window, two pointers, monotonic stack). When should you recognize to apply this pattern? Where does this pattern show up outside of interviews (e.g., in databases, networking, OS schedulers)?
+   - **Pattern & Generalization** (markdown): What abstract pattern does this problem belong to? (e.g., sliding window, two pointers, monotonic stack). When should you recognize to apply this pattern? Name 1-2 scenarios where this pattern seems applicable but doesn't work, and which pattern to use instead — this prevents over-application in interviews. Where does this pattern show up outside of interviews (e.g., in databases, networking, OS schedulers)?
 
    - **Related Problems** (markdown): List 3-5 other LeetCode problems that share similar techniques. For each, briefly explain the connection. Include problem numbers when possible.
 
    - **Practice Exercises** (markdown + code): 2-3 hands-on variations the reader can try — modify the constraints, change the data structure, or solve a twist on the original problem. Include starter code and hints.
 
 3. **Diagrams and visualizations**: Use matplotlib to make algorithm
-   behavior visible. Aim for 1-2 visuals per notebook — not decoration, but
-   tools that build the "aha moment." Good candidates:
-   - **Algorithm state traces** (array contents at each step, pointer
-     positions, window boundaries)
-   - **Data structure layouts** (trees, graphs, linked lists, hash maps
-     with collision chains)
-   - **DP table fills** (show how cells depend on previous cells)
-   - **Before/after comparisons** (input → sorted/partitioned/merged output)
+   behavior visible. Aim for 2-3 visuals per notebook — not decoration, but
+   tools that build understanding. Distribute them where they have the most
+   impact:
+   - **Intuition section:** Problem structure visualization — the "aha"
+     diagram that makes the insight click (e.g., data structure layout,
+     problem space, why the naive approach fails visually)
+   - **Solution section:** Algorithm state trace on an example (array
+     contents at each step, pointer positions, window boundaries, DP table
+     fill showing cell dependencies)
+   - **Benchmark section:** Performance comparison chart (timing curves
+     for brute force vs optimal on increasing input sizes)
 
    When the problem involves trees, graphs, linked lists, or matrices, a
    diagram is mandatory — don't rely on prose alone. Use simple, labeled
@@ -62,7 +69,9 @@ Explain as a problem-solver and educator who:
    - Add comments explaining the *why*, not the *what*
 
 5. **Multiple solutions** (when applicable):
-   - If there are multiple approaches (brute force → optimized), show each as a separate code cell
+   - Show the full progression as separate Solution cells (e.g., O(n²) → O(n log n) → O(n))
+   - For each approach: implement → demo working → demo limitation → transition to next
+   - Follow each Solution cell with a Walkthrough cell tracing one example step by step
    - Explain the trade-offs between solutions
    - Always include the optimal solution
 

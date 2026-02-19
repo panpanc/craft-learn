@@ -73,8 +73,21 @@ CraftLearn is a set of teaching skills that run inside AI coding tools — Claud
 
 - **See it, don't just read about it.** Lessons generate real graphs, diagrams, and plots — not "imagine a chart here."
 
+## Examples
 
+Browse [`examples/`](examples/) to see what each skill produces. These are real outputs, not mocks.
 
+| Example | Skill | Description |
+|---|---|---|
+| [Eigenvalues & Eigenvectors](examples/eigenvalues_and_eigenvectors_concept.md) | `explain` | 14-stage explanation from geometric intuition to spectral decomposition and PCA |
+| [Epistemology](examples/epistemology/) | `explain` → `explore` | 12-stage explanation + a deep-dive follow-up on coherentism |
+| [Gradient Descent](examples/gradient_descent_guide.ipynb) | `notebook-deep-py` | 12-stage deep-dive from slope intuition to Adam optimizer with runnable code |
+| [Present Value & Discounting](examples/present_value_and_discounting_guide.ipynb) | `notebook-deep-py` | 13-stage guide from compound interest to bond pricing and DCF analysis |
+| [SQL Joins](examples/sql_joins_guide.ipynb) | `notebook-deep-py` | 11-stage guide with Python and SQLite — nested loops to hash joins |
+| [Song Writing Course](examples/song_writing_course/) | `course-notebook-py` | 7-chapter notebook course from melody basics to a finished song |
+| [Coin Change](examples/coin_change_leetcode.ipynb) | `leetcode-notebook-py` | LeetCode 322 walkthrough — brute force to bottom-up DP with benchmarks and visualizations |
+
+> **Try it yourself:** pick any example and go deeper — `/explore examples/gradient_descent_guide.ipynb momentum deeper`
 
 
 ## Learn more
