@@ -29,6 +29,8 @@ Explain as a problem-solver and educator who:
 
    - **Walkthrough** (code, after each Solution cell): Trace through one example input step by step, printing variable state at each iteration (loop counter, pointer positions, data structure contents, decisions made). This is how interviewers expect candidates to verify — "walk me through this."
 
+   - **Animated Walkthrough** (code, after the *optimal* Solution's Walkthrough): An interactive animation that visually replays the optimal algorithm step by step. Use the same example input as the text walkthrough above. Read the shared animation template at `.claude/skills/_shared/animation_player.md` and follow its frame-rendering pipeline, color scheme, and HTML/JS player template. Include a markdown heading ("### Animated Walkthrough") before the animation cell. Only animate the optimal solution — animating all approaches would triple notebook size.
+
    - **Benchmark** (code): Run both brute force and optimal solutions on increasing input sizes (e.g., n = 100, 1000, 5000, 10000), print a timing table, and plot the performance curves using matplotlib. Makes Big-O tangible — the reader sees O(n²) vs O(n) as real seconds, not just notation.
 
    - **Complexity Analysis** (markdown): Time and space complexity with clear explanations of *why* (not just the Big-O notation).
@@ -53,6 +55,8 @@ Explain as a problem-solver and educator who:
      fill showing cell dependencies)
    - **Benchmark section:** Performance comparison chart (timing curves
      for brute force vs optimal on increasing input sizes)
+   - **Animated Walkthrough section:** Interactive step-by-step animation
+     of the optimal algorithm (follow `.claude/skills/_shared/animation_player.md`)
 
    When the problem involves trees, graphs, linked lists, or matrices, a
    diagram is mandatory — don't rely on prose alone. Use simple, labeled
@@ -87,7 +91,10 @@ Explain as a problem-solver and educator who:
       ```
       jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=120 "<filename>" --output "<filename>"
       ```
-   c. If execution fails, read the error traceback, fix the broken cell(s) in the notebook, and re-execute. Do not regenerate the entire notebook — only fix what's broken.
+   c. If execution fails, read the error traceback, fix the broken cell(s) in the notebook, and re-execute. Do not regenerate the entire notebook — only fix what's broken. Common animation-specific failures:
+      - **Empty snapshots list:** The algorithm loop didn't append states — check the snapshot-building code
+      - **Unclosed figures:** Missing `plt.close(fig)` causes memory warnings and blank frames
+      - **JSON encoding error:** `frames_b64` contains non-ASCII or `json.dumps()` fails — ensure all frames are plain ASCII base64
    d. Repeat up to 3 times. If it still fails after 3 attempts, save the notebook as-is and tell the user which cell(s) failed and why.
 
 8. **Follow-up suggestions**: After saving, print a brief "What's next?" block with 2-3 contextual follow-up commands using the actual generated filename. For example:
