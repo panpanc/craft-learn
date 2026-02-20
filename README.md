@@ -94,3 +94,7 @@ Browse [`examples/`](examples/) to see what each skill produces. These are real 
 
 - [Why this beats asking an AI chatbot](WHY.md)
 - [Common questions and workflows](QA.md)
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
