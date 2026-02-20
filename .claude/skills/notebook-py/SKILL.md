@@ -36,6 +36,8 @@ Explain as an educator who:
      the correct approach. Where relevant, contrast with an alternative approach
      to highlight trade-offs.
 
+   - **Animated Walkthrough** (code, when the topic has a step-by-step process): An interactive animation that visually replays a key algorithm or process step by step. Read the shared animation template at `.claude/skills/_shared/animation_player.md` and follow its frame-rendering pipeline, color scheme, and HTML/JS player template. Include a markdown heading ("### Animated Walkthrough") before the animation cell. Pick the single most important process in the notebook to animate — the one where seeing each step builds the most understanding.
+
    - **Summary**: Key takeaways, common pitfalls to avoid, when this approach
      does *not* apply, where this shows up in real-world systems, the
      transferable principle (what generalizes beyond this topic), and
@@ -56,6 +58,8 @@ Explain as an educator who:
      pointers moving)
    - **Performance curves** (O(n) vs O(log n) on real data)
    - **Concept maps** (how components relate to each other)
+   - **Animated walkthroughs** (interactive step-by-step replay of an
+     algorithm or process — follow `.claude/skills/_shared/animation_player.md`)
 
    When a concept is spatial or structural, a diagram is mandatory — don't
    rely on prose alone. Use simple, labeled plots with clear titles. Prefer
@@ -86,7 +90,10 @@ Explain as an educator who:
       ```
       jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=120 "<filename>" --output "<filename>"
       ```
-   c. If execution fails, read the error traceback, fix the broken cell(s) in the notebook, and re-execute. Do not regenerate the entire notebook — only fix what's broken.
+   c. If execution fails, read the error traceback, fix the broken cell(s) in the notebook, and re-execute. Do not regenerate the entire notebook — only fix what's broken. Common animation-specific failures:
+      - **Empty snapshots list:** The algorithm loop didn't append states — check the snapshot-building code
+      - **Unclosed figures:** Missing `plt.close(fig)` causes memory warnings and blank frames
+      - **JSON encoding error:** `frames_b64` contains non-ASCII or `json.dumps()` fails — ensure all frames are plain ASCII base64
    d. Repeat up to 3 times. If it still fails after 3 attempts, save the notebook as-is and tell the user which cell(s) failed and why.
 
 7. **Follow-up suggestions**: After saving, print a brief "What's next?" block with 2-3 contextual follow-up commands using the actual generated filename. For example:

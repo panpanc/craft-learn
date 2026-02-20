@@ -263,12 +263,15 @@ After generating the animation cell, verify:
 - [ ] The player HTML renders (contains `<div id="ap`)
 - [ ] JSON encoding of frames list doesn't break the notebook JSON (no unescaped quotes)
 - [ ] The animation cell is self-contained — runs after prior cells without extra imports
+- [ ] **All visual content fits within the frame bounds.** When visualizations grow or shrink across frames (trees gaining nodes, arrays expanding, etc.), compute axis limits from the actual data positions in each frame — don't use static limits. Call `ax.set_xlim`/`ax.set_ylim` with margins derived from the min/max coordinates of all drawn elements in that frame. Test the largest frame specifically.
 
 Common failure causes:
 - **Empty snapshots list:** The algorithm loop didn't append states — check the snapshot-building code
 - **Unclosed figures:** Missing `plt.close(fig)` causes memory warnings and blank frames
 - **JSON encoding error:** `frames_b64` contains non-ASCII or the `_json.dumps()` call fails — ensure all frames are plain ASCII base64
 - **Notebook JSON invalid:** Unescaped backslashes or quotes in the HTML template — use raw strings or proper escaping
+- **Clipped content in frames:** Axes limits are too tight or static, causing nodes/labels to go off-screen as the visualization grows. Always compute limits from actual drawn positions per frame, with generous margins (at least 0.5-1.0 units). For tree/graph visualizations, compute layout positions first, then set `xlim`/`ylim` from the position extremes.
+- **Deno `btoa` Unicode error:** `btoa()` in Deno only handles Latin1 (0-255). If SVG strings contain Unicode (arrows, em dashes, etc.), either use ASCII-only text in SVGs or encode via `TextEncoder` first: `const bytes = new TextEncoder().encode(svg); let bin = ""; for (const b of bytes) bin += String.fromCharCode(b); return btoa(bin);`
 
 ## 8. Concrete example — Two-pointer array animation
 

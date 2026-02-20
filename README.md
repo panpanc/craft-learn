@@ -86,6 +86,8 @@ Browse [`examples/`](examples/) to see what each skill produces. These are real 
 | [SQL Joins](examples/sql_joins_guide.ipynb) | `notebook-deep-py` | 11-stage guide with Python and SQLite — nested loops to hash joins |
 | [Song Writing Course](examples/song_writing_course/) | `course-notebook-py` | 7-chapter notebook course from melody basics to a finished song |
 | [Coin Change](examples/coin_change_leetcode.ipynb) | `leetcode-notebook-py` | LeetCode 322 walkthrough — brute force to bottom-up DP with benchmarks and visualizations |
+| [Two Sum](examples/two_sum_leetcode.ipynb) | `leetcode-notebook-py` | LeetCode 1 walkthrough — brute force to hash map with animated walkthrough |
+| [Hydra Game](examples/hydra_game.ipynb) | `notebook-py` | The Hydra game — tree cutting, regrowth rules, and animated step-by-step walkthrough |
 
 > **Try it yourself:** pick any example and go deeper — `/explore examples/gradient_descent_guide.ipynb momentum deeper`
 
