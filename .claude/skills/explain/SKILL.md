@@ -38,15 +38,22 @@ Explain as an engineer and educator who:
    - Add ASCII diagrams or tables where they aid understanding
    - Highlight key insights and "aha moments" explicitly
    - Include code snippets (in fenced code blocks) where they clarify implementation details
+   - **Math formatting**: Use LaTeX notation (`$...$` inline, `$$...$$` display) for mathematical formulas — never put math inside fenced code blocks. Reserve code blocks for actual code, ASCII diagrams, and step-by-step computation traces with concrete numbers
    - Include at least one "what goes wrong without this" example — show the failure that motivates the concept
    - End each stage with a brief transition to the next
 
 5. **Naming**: Save the document in the current working directory as `<topic_slug>.md` (e.g., `universal_hashing.md`).
 
-6. **Progress**: After completing the file, print a brief summary of what was generated:
+6. **Verify**: After writing the document, check for:
+   a. No unclosed fenced code blocks (every ``` has a matching closing ```)
+   b. No unclosed LaTeX delimiters (every `$` or `$$` has a matching close)
+   c. No LaTeX math (`$...$` or `$$...$$`) inside fenced code blocks — move any math found in code blocks to surrounding markdown prose
+   d. Read the file and fix any issues found.
+
+7. **Progress**: After completing the file, print a brief summary of what was generated:
    `Generated <N> stages covering: <stage 0 title> → ... → <final stage title>`
 
-7. **Follow-up suggestions**: After saving, print a brief "What's next?" block with 2-3 contextual follow-up commands using the actual generated filename. For example:
+8. **Follow-up suggestions**: After saving, print a brief "What's next?" block with 2-3 contextual follow-up commands using the actual generated filename. For example:
 
    > **What's next?**
    > - Drill into a stage: `/explore <filename> <stage topic> deeper`

@@ -95,7 +95,7 @@ Apply this style when the output format is `.md`:
 - Use clear, conversational prose — explain like teaching a colleague
 - Include worked examples with specific values the reader can verify by hand
 - Use ASCII diagrams and tables where they aid understanding
-- Use LaTeX math (inline `$...$` and display `$$...$$`) for formal definitions and derivations
+- Use LaTeX math (inline `$...$` and display `$$...$$`) for formal definitions and derivations — never put math inside fenced code blocks. Reserve code blocks for actual code, ASCII diagrams, and step-by-step computation traces with concrete numbers
 - Include code snippets in fenced blocks only where they clarify implementation details — do not make the document executable
 - Do not repeat content from the source document — build on it
 
@@ -175,7 +175,8 @@ b. Execute the notebook to verify all code cells run without errors:
    jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=120 "<filename>" --output "<filename>"
    ```
 c. If execution fails, read the error traceback, fix the broken cell(s) in the notebook, and re-execute. Do not regenerate the entire notebook — only fix what's broken.
-d. Repeat up to 3 times. If it still fails after 3 attempts, save the notebook as-is and tell the user which cell(s) failed and why.
+d. Check markdown cells for LaTeX math (`$...$` or `$$...$$`) inside fenced code blocks. If found, move the math to surrounding markdown prose outside the code block.
+e. Repeat up to 3 times. If it still fails after 3 attempts, save the notebook as-is and tell the user which cell(s) failed and why.
 
 ### Markdown output (.md)
 
@@ -183,7 +184,8 @@ After writing the document, verify:
 
 a. No unclosed fenced code blocks (every ``` has a matching closing ```)
 b. No unclosed LaTeX delimiters (every `$` or `$$` has a matching close)
-c. Read the file and fix any issues found.
+c. No LaTeX math (`$...$` or `$$...$$`) inside fenced code blocks — move any math found in code blocks to surrounding markdown prose
+d. Read the file and fix any issues found.
 
 ---
 

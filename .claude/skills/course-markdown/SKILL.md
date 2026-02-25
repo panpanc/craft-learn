@@ -76,6 +76,7 @@ Explain as an educator and writer who:
    - Clear, direct prose — explain one thing at a time
    - Code examples in fenced blocks with language tags (e.g., ```python)
    - Include code when it clarifies a concept, but don't force code into every section — some ideas are better explained with prose, diagrams, or math
+   - **Math formatting**: Use LaTeX notation (`$...$` inline, `$$...$$` display) for mathematical formulas — never put math inside fenced code blocks. Reserve code blocks for actual code, ASCII diagrams, and step-by-step computation traces with concrete numbers
    - Diagrams and tables are explanatory tools, not decoration. Aim for at least one per chapter. Good candidates:
      - **Architecture or flow diagrams** (ASCII boxes and arrows showing how components connect)
      - **Comparison tables** (side-by-side analysis of approaches, trade-offs, or properties)
@@ -114,6 +115,15 @@ Create `00_syllabus.md` in the course directory with:
   - Each file ends with a "What's Next" section linking to the next chapter
   - Chapters should be self-contained enough to revisit independently, while still cross-referencing prior chapters
 - The final chapter file includes the closing sections (synthesis, exercises, further reading)
+
+## Verification
+
+After writing each chapter file, check for:
+
+a. No unclosed fenced code blocks (every ``` has a matching closing ```)
+b. No unclosed LaTeX delimiters (every `$` or `$$` has a matching close)
+c. No LaTeX math (`$...$` or `$$...$$`) inside fenced code blocks — move any math found in code blocks to surrounding markdown prose
+d. Read the file and fix any issues found.
 
 ## Follow-up suggestions
 

@@ -50,6 +50,7 @@ Explain as a hands-on course designer who:
       - **Motivation opener**: 1–2 sentences on why this concept matters here — what problem it solves or what gap it fills
       - **Intuition hook**: An analogy, mental model, or "think of it like..." before the formal explanation
       - Clear explanation building on the intuition, with diagrams (ASCII or described) and LaTeX ($...$) where appropriate
+      - **Math formatting**: Use LaTeX notation (`$...$` inline, `$$...$$` display) for mathematical formulas in markdown cells — never put math inside fenced code blocks. Reserve code blocks for actual code, ASCII diagrams, and step-by-step computation traces with concrete numbers
       - Proactively address common misconceptions — name the wrong mental model and explain why it's wrong
    d. **Implementation cells** (3–5 code cells per chapter):
       - Start simple: the most naive version that works
@@ -140,7 +141,8 @@ After writing each chapter notebook, run this verify-and-fix loop:
    jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=120 "<filename>" --output "<filename>"
    ```
 3. If execution fails, read the error traceback, fix the broken cell(s) in the notebook, and re-execute. Do not regenerate the entire notebook — only fix what's broken.
-4. Repeat up to 3 times per chapter. If it still fails after 3 attempts, save the notebook as-is and tell the user which cell(s) failed and why.
+4. Check markdown cells for LaTeX math (`$...$` or `$$...$$`) inside fenced code blocks. If found, move the math to surrounding markdown prose outside the code block.
+5. Repeat up to 3 times per chapter. If it still fails after 3 attempts, save the notebook as-is and tell the user which cell(s) failed and why.
 5. Continue to the next chapter regardless — don't let one chapter block the rest.
 
 ## Follow-up suggestions

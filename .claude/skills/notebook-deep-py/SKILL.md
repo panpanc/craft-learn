@@ -50,6 +50,7 @@ Explain as an engineer and educator who:
    - Include at least one benchmark or empirical verification
    - Prefer self-contained code — each cell should run independently after running prior cells
    - Use only standard library + common packages (numpy, matplotlib, etc.)
+   - **Math formatting**: Use LaTeX notation (`$...$` inline, `$$...$$` display) for mathematical formulas in markdown cells — never put math inside fenced code blocks. Reserve code blocks for actual code, ASCII diagrams, and step-by-step computation traces with concrete numbers
    - Highlight key insights and "aha moments" explicitly — use markdown cells to call out the crucial realization
    - End each stage with a brief transition to the next — what question does the next stage answer?
 
@@ -69,7 +70,8 @@ Explain as an engineer and educator who:
       jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=120 "<filename>" --output "<filename>"
       ```
    c. If execution fails, read the error traceback, fix the broken cell(s) in the notebook, and re-execute. Do not regenerate the entire notebook — only fix what's broken.
-   d. Repeat up to 3 times. If it still fails after 3 attempts, save the notebook as-is and tell the user which cell(s) failed and why.
+   d. Check markdown cells for LaTeX math (`$...$` or `$$...$$`) inside fenced code blocks. If found, move the math to surrounding markdown prose outside the code block.
+   e. Repeat up to 3 times. If it still fails after 3 attempts, save the notebook as-is and tell the user which cell(s) failed and why.
 
 9. **Follow-up suggestions**: After saving, print a brief "What's next?" block with 2-3 contextual follow-up commands using the actual generated filename. For example:
 

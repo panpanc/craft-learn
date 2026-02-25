@@ -15,6 +15,7 @@ These are the available skills and their descriptions:
 | Skill | Description |
 |-------|-------------|
 | `explain` | Generate a markdown document that explains a concept through progressive stages |
+| `illuminate` | Illuminate a concept from multiple epistemic angles — historical, foundational, coherentist, perspectival, and across abstraction levels |
 | `notebook-py` | Generate a Python notebook with illustrative code examples for any topic |
 | `notebook-ts` | Generate a Deno notebook with TypeScript code examples for any topic |
 | `notebook-deep-py` | Create a deep-dive Python notebook that explains a concept from first principles with illustrative code examples |
@@ -34,6 +35,7 @@ If the topic is empty, `--help`, or `--list`, print a concise command reference 
 | Category | Commands | Format |
 |---|---|---|
 | **Explanation** | `explain` | md |
+| **Epistemic exploration** | `illuminate` | md |
 | **Interactive notebook** | `notebook-py`, `notebook-ts`, `notebook-deep-py` | ipynb |
 | **Multi-chapter course** | `course-notebook-py`, `course-markdown` | ipynb/md |
 | **LeetCode** | `leetcode-notebook-py`, `leetcode-notebook-ts` | ipynb |
@@ -43,6 +45,7 @@ Then show 2-3 quick-start examples:
 - `/learn binary search as a notebook`
 - `/learn Galois theory from first principles`
 - `/learn leetcode 72 edit distance`
+- `/learn illuminate gradient descent`
 - `/learn go deeper on <file>`
 
 ## Step 2: Classify by input shape (check in order)
@@ -95,6 +98,15 @@ Before topic-matching, check for these structural signals:
    - If no format preference is stated → **ask the user to choose** between `course-markdown` and `course-notebook-py`
 2. Strip routing keywords and pass the topic as args.
 
+### 2d: Epistemic exploration
+
+**Trigger:** Words like "illuminate", "multiple perspectives", "perspectives on", "angles on", "mental models for", "historical development of", "epistemic", "foundationalism", "coherentism", "from multiple angles"
+
+**Steps:**
+1. Strip routing keywords ("illuminate", "multiple perspectives", "from multiple angles", etc.) from the arguments.
+2. If any argument matches an existing file path, include it as the source document.
+3. Route to `illuminate` with the topic(s) and optional file path as args.
+
 ## Step 3: Topic-match against discovered skills
 
 If no structural signal matched, match the user's topic against the skill descriptions in the catalog from Step 1.
@@ -110,8 +122,11 @@ If no structural signal matched, match the user's topic against the skill descri
    - **Scope**: "Single explanation or a multi-chapter course?"
    - **Audience** (if specified): Preserve the audience/level phrase (e.g., "for engineers", "for beginners") and pass it through to the target skill as part of the arguments. Do NOT strip audience phrases — they are content instructions, not routing signals.
 
+   - **Angle**: "Want a linear explanation, or explore the concept from multiple angles and perspectives?"
+
    Ask at most 2 questions. Map the answers to the right command:
-   - Prose → `explain`
+   - Prose (linear) → `explain`
+   - Multi-angle exploration → `illuminate`
    - Code + quick → `notebook-py`
    - Code + deep → `notebook-deep-py`
    - Course → ask `course-markdown` vs `course-notebook-py`
@@ -140,5 +155,8 @@ Once you've identified the target skill:
 | `compiler design markdown` | `course-markdown` | "markdown" format signal |
 | `deep learning course as separate notebooks` | `course-notebook-py` | "course" + "separate notebooks" signal |
 | `build a database notebook` | `notebook-deep-py` | Single-notebook progressive format |
+| `illuminate gradient descent` | `illuminate` | "illuminate" structural signal |
+| `gradient descent from multiple perspectives` | `illuminate` | "multiple perspectives" trigger |
+| `mental models for recursion` | `illuminate` | "mental models" trigger |
 | `gradient descent for biologists` | Ask: prose or code? | Audience modifier preserved, no format specified |
 | `compiler design course for CS undergrads` | Ask: markdown or notebook? | "course" routes, audience passes through |

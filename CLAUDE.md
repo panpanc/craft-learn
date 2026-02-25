@@ -4,11 +4,12 @@ A set of Claude Code skills (SKILL.md format) that generate educational content 
 
 ## Skill structure
 
-`/learn` is the main entry point. It routes to 9 skills based on the topic and format signals:
+`/learn` is the main entry point. It routes to 10 skills based on the topic and format signals:
 
 | Category | Skills | Output |
 |---|---|---|
 | Explanation | `explain` | .md |
+| Epistemic exploration | `illuminate` | .md |
 | Interactive notebook | `notebook-py`, `notebook-ts`, `notebook-deep-py` | .ipynb |
 | Multi-chapter course | `course-notebook-py` | .ipynb |
 | Multi-chapter course | `course-markdown` | .md |

@@ -74,6 +74,7 @@ Explain as an educator who:
    - Include at least one verification cell — assert a property, run a sanity
      check, or benchmark against a known result
    - Use only standard library + common packages (numpy, matplotlib, etc.)
+   - **Math formatting**: Use LaTeX notation (`$...$` inline, `$$...$$` display) for mathematical formulas in markdown cells — never put math inside fenced code blocks. Reserve code blocks for actual code, ASCII diagrams, and step-by-step computation traces with concrete numbers
    - Highlight key insights and "aha moments" explicitly — use markdown cells to call out the crucial realization
    - End each section with a brief transition to the next — what question does the next section answer?
 
@@ -94,7 +95,8 @@ Explain as an educator who:
       - **Empty snapshots list:** The algorithm loop didn't append states — check the snapshot-building code
       - **Unclosed figures:** Missing `plt.close(fig)` causes memory warnings and blank frames
       - **JSON encoding error:** `frames_b64` contains non-ASCII or `json.dumps()` fails — ensure all frames are plain ASCII base64
-   d. Repeat up to 3 times. If it still fails after 3 attempts, save the notebook as-is and tell the user which cell(s) failed and why.
+   d. Check markdown cells for LaTeX math (`$...$` or `$$...$$`) inside fenced code blocks. If found, move the math to surrounding markdown prose outside the code block.
+   e. Repeat up to 3 times. If it still fails after 3 attempts, save the notebook as-is and tell the user which cell(s) failed and why.
 
 7. **Follow-up suggestions**: After saving, print a brief "What's next?" block with 2-3 contextual follow-up commands using the actual generated filename. For example:
 

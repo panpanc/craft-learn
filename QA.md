@@ -6,6 +6,7 @@
 |---|---|---|
 | `/learn <topic>` | (varies) | Router — classifies your request and dispatches to the right skill |
 | `/explain <topic>` | `<slug>.md` | Progressive 8–14 stage explanation built from first principles |
+| `/illuminate <concept(s)>` | `<slug>_illuminated.md` | Multi-angle epistemic exploration — historical, foundational, perspectival |
 | `/notebook-py <topic>` | `<slug>.ipynb` | Python notebook with code examples and visualizations |
 | `/notebook-ts <topic>` | `<slug>_ts.ipynb` | Deno/TypeScript notebook with code examples |
 | `/notebook-deep-py <topic>` | `<slug>_guide.ipynb` | Deep-dive Python notebook — naive to production-quality code |
@@ -30,6 +31,7 @@ One-liner heuristics:
 | If you want... | Use |
 |---|---|
 | A conceptual explanation from first principles | `explain` |
+| Multi-angle epistemic exploration | `illuminate` |
 | Hands-on code you can run | `notebook-py` or `notebook-ts` |
 | A progression from naive to production code | `notebook-deep-py` |
 | Comprehensive multi-topic coverage | `course-markdown` or `course-notebook-py` |
@@ -104,7 +106,8 @@ The router checks your input in this priority order:
 3. **Follow-up on existing content** — "go deeper", "expand", "why", "improve" + a file reference
 4. **LeetCode** — "leetcode", "LC", a problem number, or a known problem name
 5. **Multi-chapter course** — "course", "multi-chapter", "full course", or a broad multi-topic subject
-6. **Topic matching** — compares your topic against skill descriptions; asks clarifying questions if ambiguous
+6. **Epistemic exploration** — "illuminate", "multiple perspectives", "angles on", "mental models for", "from multiple angles"
+7. **Topic matching** — compares your topic against skill descriptions; asks clarifying questions if ambiguous
 
 When multiple skills could fit and you haven't specified a format, the router asks plain-language questions:
 
@@ -128,6 +131,9 @@ When multiple skills could fit and you haven't specified a format, the router as
 | `improve sql_joins.ipynb more depth` | `explore` (deep-dive) | Follow-up signal with file |
 | `machine learning course` | Asks: markdown or notebook? | "course" trigger, no format |
 | `compiler design markdown` | `course-markdown` | "markdown" format signal |
+| `illuminate gradient descent` | `illuminate` | "illuminate" structural signal |
+| `gradient descent from multiple perspectives` | `illuminate` | "multiple perspectives" trigger |
+| `mental models for recursion` | `illuminate` | "mental models" trigger |
 | `gradient descent for biologists` | `explain` | Audience signal doesn't change routing — just adapts content |
 | `quantum mechanics course for engineers` | Asks: markdown or notebook? | Audience passes through to the chosen skill |
 
@@ -161,6 +167,7 @@ Each follow-up reads the original document and builds on it — the deeper expla
 | Skill | Filename pattern |
 |---|---|
 | `explain` | `<topic_slug>.md` |
+| `illuminate` | `<concept_slug>_illuminated.md` |
 | `notebook-py` | `<topic_slug>.ipynb` |
 | `notebook-ts` | `<topic_slug>_ts.ipynb` |
 | `notebook-deep-py` | `<topic_slug>_guide.ipynb` |
@@ -187,7 +194,7 @@ Yes. Skills use the [SKILL.md standard](https://code.claude.com/docs/en/skills) 
 **Directory layout:**
 
 ```
-.claude/skills/      ← primary location (1 router + 9 skill directories, each with SKILL.md)
+.claude/skills/      ← primary location (1 router + 10 skill directories, each with SKILL.md)
 .agents/skills/      ← symlink → ../.claude/skills (for Codex CLI)
 CLAUDE.md            ← Claude Code project instructions
 AGENTS.md            ← cross-tool project instructions (Codex, OpenCode, Cursor, Windsurf)
@@ -271,6 +278,21 @@ The clipboard text is matched against the source file to find surrounding contex
 ```
 /explore hash_tables.ipynb --from-clipboard expand
 /explore hash_tables.ipynb --from-clipboard why
+```
+
+### Illuminate → explore → course
+
+Multi-angle understanding, then drill into threads, then scale up.
+
+```
+/learn illuminate gradient descent
+                                              # → illuminate → gradient_descent_illuminated.md
+
+/explore gradient_descent_illuminated.md momentum deeper
+                                              # → momentum_deep_dive.md
+
+/learn gradient descent course
+                                              # → course-notebook-py or course-markdown
 ```
 
 ### LeetCode practice
