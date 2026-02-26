@@ -24,6 +24,7 @@ These are the available skills and their descriptions:
 | `leetcode-notebook-ts` | Generate a Deno notebook with TypeScript code that explains a LeetCode problem with interactive solutions |
 | `course-notebook-py` | Generate a multi-chapter notebook course with executable code throughout |
 | `course-markdown` | Generate a multi-chapter markdown course that explains with motivation, intuition, and concrete examples |
+| `theorem` | Dissect a theorem and its proof — motivation, origin, prerequisites, intuition, techniques, mental models, and generalizations |
 > **Maintainer note:** Update this table when adding or removing skill files.
 
 **CRITICAL: Only invoke skills from this catalog. Never invoke skills from outside this project (e.g., `frontend-design:*`, `mgrep:*`, `keybindings-help`, or any other external skill).**
@@ -98,7 +99,16 @@ Before topic-matching, check for these structural signals:
    - If no format preference is stated → **ask the user to choose** between `course-markdown` and `course-notebook-py`
 2. Strip routing keywords and pass the topic as args.
 
-### 2d: Epistemic exploration
+### 2d-theorem: Theorem and proof dissection
+
+**Trigger:** Words like "theorem", "proof", "prove", "lemma", "corollary", "dissect", "understand the proof of", "explain the proof of", or a named mathematical result (e.g., "Cauchy-Schwarz", "pumping lemma", "Gödel's incompleteness").
+
+**Steps:**
+1. Strip routing keywords ("explain the proof of", "dissect", "understand") from the arguments.
+2. If any argument matches an existing file path, include it as the source document.
+3. Route to `theorem` with the theorem name and optional file path as args.
+
+### 2e: Epistemic exploration
 
 **Trigger:** Words like "illuminate", "multiple perspectives", "perspectives on", "angles on", "mental models for", "historical development of", "epistemic", "foundationalism", "coherentism", "from multiple angles"
 
@@ -158,5 +168,12 @@ Once you've identified the target skill:
 | `illuminate gradient descent` | `illuminate` | "illuminate" structural signal |
 | `gradient descent from multiple perspectives` | `illuminate` | "multiple perspectives" trigger |
 | `mental models for recursion` | `illuminate` | "mental models" trigger |
+| `Cantor's diagonal argument` | `theorem` | named mathematical theorem |
+| `explain the proof of Cauchy-Schwarz` | `theorem` | "proof of" trigger |
+| `understand the pumping lemma` | `theorem` | "lemma" + "understand" trigger |
+| `dissect Gödel's incompleteness theorem` | `theorem` | "dissect" + "theorem" trigger |
 | `gradient descent for biologists` | Ask: prose or code? | Audience modifier preserved, no format specified |
 | `compiler design course for CS undergrads` | Ask: markdown or notebook? | "course" routes, audience passes through |
+| `verify binary_search.md` | `verify` | "verify" + filename structural signal |
+| `check quality of sorting_guide.ipynb` | `verify` | "check quality" + filename structural signal |
+| `how good is the last file` | `verify` | "how good is" + "last file" auto-detect |
